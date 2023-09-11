@@ -8,9 +8,9 @@
     "dev": "nodemon src/index.ts",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "postinstall": "husky install",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --enable"
+    "postinstall": "husky install"
+    // "prepack": "pinst --disable",
+    // "postpack": "pinst --enable"
   },
   "dependencies": {
     "express": "^4.18.2"
