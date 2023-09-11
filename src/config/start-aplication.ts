@@ -10,5 +10,7 @@ export function getStartAplication() {
   });
 
   app.use(express.json());
-  app.listen(Environment.Port, () => console.log("Server in running"));
+  app.listen(Environment.Port, () =>
+    console.log(Environment.Message_Start_Aplication),
+  );
 }
