@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 
 import { Environment } from "./environment";
+import "../domain";
+import router from "../routes";
 
 export function getStartAplication() {
   const app = express();
@@ -10,7 +12,6 @@ export function getStartAplication() {
   });
 
   app.use(express.json());
-  app.listen(Environment.Port, () =>
-    console.log(Environment.Message_Start_Aplication),
-  );
+  app.use(router);
+  app.listen(Environment.Port, () => console.log("Inicialize"));
 }

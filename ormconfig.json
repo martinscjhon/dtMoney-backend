@@ -1,0 +1,14 @@
+{
+  "type": "mysql",
+  "port": 3306,
+  "host": "localhost",
+  "username": "root",
+  "password": "jm201219",
+  "database": "dtMoney",
+  "entities": ["./src/domain/entity/*.ts"],
+  "migrations": ["./src/domain/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/domain/migrations",
+    "entitiesDir": "./src/domain/entities"
+  }
+}

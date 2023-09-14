@@ -1,7 +1,6 @@
-import { Environment, getStartAplication, DataBase } from "./config";
+import { Environment, getStartAplication } from "./config";
 
 (async () => {
   await Environment.register();
-  await DataBase.register();
   getStartAplication();
 })();
