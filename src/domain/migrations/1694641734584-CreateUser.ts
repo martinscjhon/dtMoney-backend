@@ -13,6 +13,12 @@ export class CreateUser1694641734584 implements MigrationInterface {
             isPrimary: true,
           },
           {
+            name: "Uuid",
+            type: "varchar",
+            length: "60",
+            generationStrategy: "uuid",            
+          },
+          {
             name: "Nome",
             type: "varchar",
             length: "100",
