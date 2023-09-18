@@ -2,7 +2,7 @@ import { Repository, getRepository } from "typeorm";
 
 import { Users } from "../../../domain/entities";
 
-export class ExistUser {
+export class VerifyExistUser {
   private repository: Repository<Users>;
 
   constructor() {
@@ -12,16 +12,17 @@ export class ExistUser {
   async execute(Email: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       try {
-        const searchUser = this.repository.find({
+        console.log("chegou")
+
+        const searchUser = this.repository.findOne({
           where: { Email },
         });
 
-        let result: boolean;
+        console.log("chegou")
 
-        if (!searchUser) result = false;
-        else result = true;
+        if (!searchUser) return resolve(false);
 
-        resolve(result);
+        return resolve(true);
       } catch (error) {
         reject(error);
       }

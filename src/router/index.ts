@@ -1,12 +1,4 @@
-import { Request, Response, Router } from "express";
+import { authRoute } from "./auth-route";
+import { userRoute } from "./user-route";
 
-import { UserController } from "../controller/user-controller";
-
-const router = Router();
-const controllerName = "/app";
-
-router.post(`${controllerName}/create/user`, (req: Request, res: Response) => {
-  return new UserController().register(req, res);
-});
-
-export { router };
+export { authRoute, userRoute}

@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 
 import { Environment } from "./environment";
 import "../domain";
-import { router } from "../router";
+import { userRoute, authRoute } from "../router";
 
 export function getStartAplication() {
   const app = express();
@@ -12,6 +12,8 @@ export function getStartAplication() {
     response.json({ message: "API ONLIE" });
   });
 
-  app.use(router);
+  app.use(userRoute);
+  app.use(authRoute);
+  
   app.listen(Environment.Port, () => console.log("Inicialize"));
 }
