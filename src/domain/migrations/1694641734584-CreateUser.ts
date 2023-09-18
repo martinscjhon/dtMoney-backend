@@ -11,6 +11,7 @@ export class CreateUser1694641734584 implements MigrationInterface {
             type: "int",
             generationStrategy: "increment",
             isPrimary: true,
+            isGenerated: true
           },
           {
             name: "Uuid",
@@ -29,6 +30,7 @@ export class CreateUser1694641734584 implements MigrationInterface {
             type: "varchar",
             length: "100",
             isNullable: false,
+            isUnique: true
           },
           {
             name: "Password",

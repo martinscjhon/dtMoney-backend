@@ -5,8 +5,8 @@ import { Repository, getRepository, Connection } from "typeorm";
 export class InsertUser {
   private repository: Repository<Users>;
 
-  constructor(private conn: Connection) {
-    this.repository = conn.getRepository(Users);
+  constructor() {
+    this.repository = getRepository(Users);
   }
 
   async execute(payload: UserModel): Promise<UserModel> {
@@ -15,7 +15,7 @@ export class InsertUser {
         const insertUser = this.repository.create();
         insertUser.Nome = payload.Nome;
         insertUser.Email = payload.Email;
-        insertUser.Password = payload.Password;        
+        insertUser.Password = payload.Password;                
         const result = await this.repository.save(insertUser);
         resolve(result);
       } catch (error) {

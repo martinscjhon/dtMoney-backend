@@ -1,13 +1,14 @@
-import { PrimaryGeneratedColumn, Column } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Index } from "typeorm";
 import { v4 as UuidV4 } from "uuid";
 
 export class Base {
+  @Index()
   @PrimaryGeneratedColumn("increment")
-  id!: number;
+  Id!: number;
 
-  @Column({ type: "uuid"})
+  @Column({ type: "uuid" })
   Uuid: string;
-  
+
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   CreatedAt: Date;
 
@@ -15,6 +16,7 @@ export class Base {
   Enable: boolean;
 
   constructor() {
-    this.Uuid = UuidV4()
+    this.Uuid = UuidV4();
+    this.CreatedAt = new Date();    
   }
 }
