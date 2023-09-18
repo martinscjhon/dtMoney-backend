@@ -1,3 +1,3 @@
 import { Users } from "./User";
 
-export { Users }
+export { Users };

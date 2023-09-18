@@ -17,6 +17,6 @@ export class Base {
 
   constructor() {
     this.Uuid = UuidV4();
-    this.CreatedAt = new Date();    
+    this.CreatedAt = new Date();
   }
 }
