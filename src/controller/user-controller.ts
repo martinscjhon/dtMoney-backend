@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
-import { ok, errorSend } from "../helpers";
+import { ModuloError } from "../common/message";
+import { ok, errorSend, badRequest } from "../helpers";
 import { UserService } from "../services";
 
 export class UserController {
@@ -9,11 +10,16 @@ export class UserController {
   async register(req: Request, res: Response) {
     try {
       const { body } = req;
+
+      if (this.service.existUser(body.email))
+        return badRequest(res, ModuloError.existUser);
+
       const insert = await this.service.create({
         Email: body.Email,
         Nome: body.Nome,
         Password: body.Password,
       });
+
       ok(res, insert);
     } catch (error) {
       errorSend(res, error);

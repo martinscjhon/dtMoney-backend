@@ -1,13 +1,10 @@
 export const badRequest = (res: any, message: string) =>
-  res.status(400).json({ message });
+  res.status(500).json({ message });
 
 export const forbidden = (res: any, error: Error) =>
   res.status(403).json({ body: error });
 
 // export const unauthorized = (res: any) => res.status(401).json({ body: new UnauthorizedError() });
-
-// export const serverError = (res: any, error: Error) =>
-//   res.status(500).json({ body: new DataMessageError(error.message) });
 
 export const ok = (res: any, data: any) =>
   res.status(200).json({ body: data, isError: false });

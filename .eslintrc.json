@@ -20,8 +20,12 @@
         "eslint-plugin-import-helpers",
         "prettier"
     ],
-    "rules": {        
-        "quotes": ["error", "double"],
+    "rules": {
+        "consistent-return": "off",
+        "quotes": [
+            "error",
+            "double"
+        ],
         "@typescript-eslint/no-explicit-any": "off",
         "camelcase": "off",
         "import/no-unresolved": "error",
