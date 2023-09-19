@@ -34,7 +34,7 @@ export class UserService {
     });
   }
 
-  async verifyExist(email: string): Promise<boolean> {
+  async verifyExistByEmail(email: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       try {
         resolve(new VerifyExistUserByEmail().execute(email));
