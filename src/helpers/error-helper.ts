@@ -1,4 +1,4 @@
-import { UnauthorizedError } from "../common/error/unauthorized-error";
+import { UnauthorizedError } from "../common/error";
 import { badRequest, unauthorized } from "./http-helper";
 
 export const errorDispatch = (res: any, error: any): any => {

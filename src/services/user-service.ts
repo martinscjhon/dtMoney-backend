@@ -9,23 +9,20 @@ import { ModuloError } from "../common/message";
 import { UserModel } from "../domain/models";
 
 export class UserService {
-  async create(payload: UserModel): Promise<UserModel> {
+  async create(payload: UserModel): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
-        const { Email, Nome, Password } = payload;
+        const { Email, Name, Password } = payload;
 
-        const find = new FindOneUserByEmail().execute(Email);
+        const find = await new FindOneUserByEmail().execute(Email);
 
-        if (!find) {
-          return ModuloError.existUser;
-        }
+        if (find) throw new Error(ModuloError.existUser);
 
-        const passwordHash = await hash(Password, 8);
         resolve(
           new InsertUser().execute({
             Email,
-            Nome,
-            Password: passwordHash,
+            Name,
+            Password: await hash(Password, 8),
           }),
         );
       } catch (error) {

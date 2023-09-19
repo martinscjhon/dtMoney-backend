@@ -6,7 +6,7 @@ import { Base } from "./Base";
 export class Users extends Base {
   @Index()
   @Column({ type: "varchar", length: 100, nullable: false })
-  Nome: string;
+  Name: string;
 
   @Column({ type: "varchar", length: 100, nullable: false })
   Email: string;

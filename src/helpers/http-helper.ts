@@ -1,8 +1,8 @@
-import { UnauthorizedError } from "../common/error/unauthorized-error";
+import { UnauthorizedError } from "../common/error";
 import { Environment } from "../config";
 
 export const badRequest = (res: any, message: string) =>
-  res.status(Environment.StatusCodeBadRequest).json({ message });
+  res.status(Environment.StatusCodeBadRequest).json({ message, isError: true });
 
 export const forbidden = (res: any, error: Error) =>
   res.status(Environment.StatusCodeNotPermission).json({ body: error });

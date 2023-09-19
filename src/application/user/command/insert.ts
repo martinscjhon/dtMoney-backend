@@ -14,7 +14,7 @@ export class InsertUser {
     return new Promise((resolve, reject) => {
       try {
         const insertUser = this.repository.create();
-        insertUser.Nome = payload.Nome;
+        insertUser.Name = payload.Name;
         insertUser.Email = payload.Email;
         insertUser.Password = payload.Password;
         const result = this.repository.save(insertUser);

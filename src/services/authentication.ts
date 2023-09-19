@@ -3,7 +3,7 @@ import { Request } from "express";
 import { verify, sign } from "jsonwebtoken";
 
 import { FindOneUserByEmail } from "../application/user";
-import { UnauthorizedError } from "../common/error/unauthorized-error";
+import { UnauthorizedError } from "../common/error";
 import { ModuloError } from "../common/message";
 import { Environment } from "../config";
 import { UserModel } from "../domain/models";
@@ -26,7 +26,7 @@ export class AuthenticationService {
     const token = sign(
       {
         Email: user.Email,
-        Nome: user.Nome,
+        Nome: user.Name,
         Enable: user.Enable,
         CreatedAt: user.CreatedAt,
         Uuid: user.Uuid,
@@ -44,7 +44,7 @@ export class AuthenticationService {
         CreatedAt: user.CreatedAt,
         Email: user.Email,
         Enable: user.Enable,
-        Nome: user.Nome,
+        Nome: user.Name,
         Uuid: user.Uuid,
         Id: user.Id,
       },
