@@ -67,7 +67,7 @@ export class AuthenticationService {
         );
         return resolve(user);
       } catch (error) {
-        reject(new UnauthorizedError())
+        reject(new UnauthorizedError());
       }
     });
   }
