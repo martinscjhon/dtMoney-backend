@@ -1,7 +1,12 @@
+import { hash } from "bcrypt";
+
+import {
+  VerifyExistUser,
+  InsertUser,
+  FindOneByEmailUser,
+} from "../application/user";
 import { ModuloError } from "../common/message";
-import { VerifyExistUser, InsertUser, FindOneByEmailUser } from "../application/user";
 import { UserModel } from "../domain/models";
-import { hash } from 'bcrypt'
 
 export class UserService {
   async create(payload: UserModel): Promise<UserModel> {
@@ -12,15 +17,17 @@ export class UserService {
         const find = new FindOneByEmailUser().execute(Email);
 
         if (!find) {
-          return ModuloError.existUser
+          return ModuloError.existUser;
         }
 
         const passwordHash = await hash(Password, 8);
-        resolve(new InsertUser().execute({
-          Email,
-          Nome,
-          Password: passwordHash
-        }));
+        resolve(
+          new InsertUser().execute({
+            Email,
+            Nome,
+            Password: passwordHash,
+          }),
+        );
       } catch (error) {
         reject(error);
       }
@@ -29,7 +36,7 @@ export class UserService {
 
   async verifyExist(email: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      try {                
+      try {
         resolve(new VerifyExistUser().execute(email));
       } catch (error) {
         reject(error);

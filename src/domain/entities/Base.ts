@@ -6,7 +6,7 @@ export class Base {
   @PrimaryGeneratedColumn("increment")
   Id!: number;
 
-  @Column({ type: "uuid" })
+  @Column({ type: "varchar" })
   Uuid: string;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

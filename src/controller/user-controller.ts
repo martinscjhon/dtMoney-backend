@@ -9,12 +9,14 @@ export class UserController {
 
   async create(req: Request, res: Response) {
     try {
-      const { body: { Email, Nome, Password } } = req;
+      const {
+        body: { Email, Nome, Password },
+      } = req;
       const insert = await this.service.create({
-        Email: Email,
-        Nome: Nome,
-        Password: Password,
-      })
+        Email,
+        Nome,
+        Password,
+      });
       ok(res, insert);
     } catch (error) {
       badRequest(res, ModuloError.existUser);

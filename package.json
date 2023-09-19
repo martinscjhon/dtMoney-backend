@@ -10,6 +10,7 @@
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "migration:create": "npm run typeorm migration:create -- -n",
     "migration:revert": "yarn typeorm migration:revert",
+    "migration:run": "yarn typeorm migration:run",
     "typeorm": "ts-node ./node_modules/typeorm/cli",
     "prepare": "husky install"
   },

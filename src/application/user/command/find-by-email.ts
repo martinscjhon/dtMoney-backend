@@ -1,7 +1,7 @@
 import { Repository, getRepository } from "typeorm";
 
 import { Users } from "../../../domain/entities";
-import { UserModel } from "domain/models";
+import { UserModel } from "../../../domain/models";
 
 export class FindOneByEmailUser {
   private repository: Repository<Users>;
@@ -10,12 +10,14 @@ export class FindOneByEmailUser {
     this.repository = getRepository(Users);
   }
 
-  async execute(Email: string): Promise<Users> {
+  async execute(Email: string): Promise<UserModel> {
     return new Promise(async (resolve, reject) => {
       try {
-        resolve(await this.repository.findOne({
+        const user = await this.repository.findOne({
           where: { Email },
-        }));
+        });
+
+        resolve(user);
       } catch (error) {
         reject(error);
       }

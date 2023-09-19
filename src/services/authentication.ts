@@ -1,40 +1,47 @@
+import { compare } from "bcrypt";
+import { sign } from "jsonwebtoken";
+
 import { FindOneByEmailUser } from "../application/user";
 import { ModuloError } from "../common/message";
-import { compare } from "bcrypt";
-import { sign } from 'jsonwebtoken'
-import { IAuthentication } from "../interfaces/IAuthentication";
+import { Environment } from "../config";
+import { UserModel } from "../domain/models";
+import {
+  IAuthentication,
+  IPayloadAuthentication,
+} from "../interfaces/IAuthentication";
 
 export class Authentication {
-    async execute(email: string, password: string) {
-        try {
-            const user = await new FindOneByEmailUser().execute(email);
-            if (email !== user.Email) return ModuloError.emailIncorrect;
+  async execute(payload: IPayloadAuthentication) {
+    const user: UserModel = await new FindOneByEmailUser().execute(
+      payload.Email,
+    );
 
-            const passwordCorrect = await compare(password, user.Password)
+    if (!user?.Email) return ModuloError.noExistUser;
 
-            if (!passwordCorrect) return ModuloError.passwordIncorrect;
+    if (!(await compare(payload.Password, user.Password)))
+      return ModuloError.passwordIncorrect;
 
-            const token = sign({ Nome: user.Nome, Email: user.Email }, "3f65242608461f33d24b493e4f2117f8", {
-                subject: user.Uuid,
-                expiresIn: "1d"
-            });
+    const token = sign(
+      { Nome: user.Nome, Email: user.Email },
+      Environment.Hash,
+      {
+        subject: user.Uuid,
+        expiresIn: "1d",
+      },
+    );
 
-            console.log(token)
+    const result: IAuthentication = {
+      token,
+      body: {
+        CreatedAt: user.CreatedAt,
+        Email: user.Email,
+        Enable: user.Enable,
+        Nome: user.Nome,
+        Uuid: user.Uuid,
+        Id: user.Id,
+      },
+    };
 
-            const result: IAuthentication = {
-                token,
-                body: {
-                    CreatedAt: user.CreatedAt,
-                    Email: user.Email,
-                    Enable: user.Enable,
-                    Nome: user.Nome, Uuid: user.Uuid
-                }
-            }
-
-            return result
-        } catch (error) {
-            return error;
-        }
-    }
-
+    return result;
+  }
 }

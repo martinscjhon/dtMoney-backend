@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 
+import { userRoute, authRoute } from "../router";
 import { Environment } from "./environment";
 import "../domain";
-import { userRoute, authRoute } from "../router";
 
 export function getStartAplication() {
   const app = express();
@@ -14,6 +14,6 @@ export function getStartAplication() {
 
   app.use(userRoute);
   app.use(authRoute);
-  
+
   app.listen(Environment.Port, () => console.log("Inicialize"));
 }

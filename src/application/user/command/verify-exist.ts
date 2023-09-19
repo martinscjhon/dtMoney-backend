@@ -12,17 +12,13 @@ export class VerifyExistUser {
   async execute(Email: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       try {
-        console.log("chegou")
-
         const searchUser = this.repository.findOne({
           where: { Email },
         });
 
-        console.log("chegou")
+        if (!searchUser) resolve(false);
 
-        if (!searchUser) return resolve(false);
-
-        return resolve(true);
+        resolve(true);
       } catch (error) {
         reject(error);
       }

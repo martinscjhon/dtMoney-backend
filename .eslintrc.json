@@ -21,6 +21,8 @@
         "prettier"
     ],
     "rules": {
+        "no-promise-executor-return": "off",
+        "no-async-promise-executor": "off",
         "consistent-return": "off",
         "quotes": [
             "error",

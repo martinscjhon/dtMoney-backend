@@ -1,15 +1,22 @@
+import { Environment } from "../config";
+
 export const badRequest = (res: any, message: string) =>
-  res.status(500).json({ message });
+  res.status(Environment.StatusCodeBadRequest).json({ message });
 
 export const forbidden = (res: any, error: Error) =>
-  res.status(403).json({ body: error });
+  res.status(Environment.StatusCodeNotPermission).json({ body: error });
 
 // export const unauthorized = (res: any) => res.status(401).json({ body: new UnauthorizedError() });
 
 export const ok = (res: any, data: any) =>
-  res.status(200).json({ body: data, isError: false });
+  res
+    .status(Environment.StatusCodeSuccess)
+    .json({ body: data, isError: false });
 
 export const commentResult = (res: any, data: any, message: string) =>
-  res.status(200).json({ message, body: data, isError: true });
+  res
+    .status(Environment.StatusCodeSuccess)
+    .json({ message, body: data, isError: true });
 
-export const noContent = (res: any) => res.status(204).json({ body: null });
+export const noContent = (res: any) =>
+  res.status(Environment.StatusCodeNotContent).json({ body: null });

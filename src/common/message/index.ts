@@ -2,7 +2,8 @@ export class ModuloError {
   public static createUser = "Ocorreu um erro ao criar usuário";
   public static existUser = "Esse usuário já existe na nossa base de dados";
   public static noExistUser = "Usuário não cadastrado na nossa base de dados";
-  public static emailIncorrect = "Email incorreto";
+  public static emailIncorrect = "Email incorreto para autenticação";
   public static passwordIncorrect = "Senha incorreta";
-  public static authentication = "Ocorreu um erro ao realizar autenticação";
+  public static authentication =
+    "Ocorreu um erro ao realizar autenticação. Verifique se seu email foi digitado corretamente";
 }
