@@ -1,7 +1,9 @@
 import { compare } from "bcrypt";
-import { sign } from "jsonwebtoken";
+import { Request } from "express";
+import { verify, sign } from "jsonwebtoken";
 
-import { FindOneByEmailUser } from "../application/user";
+import { FindOneUserByEmail } from "../application/user";
+import { UnauthorizedError } from "../common/error/unauthorized-error";
 import { ModuloError } from "../common/message";
 import { Environment } from "../config";
 import { UserModel } from "../domain/models";
@@ -10,9 +12,9 @@ import {
   IPayloadAuthentication,
 } from "../interfaces/IAuthentication";
 
-export class Authentication {
+export class AuthenticationService {
   async execute(payload: IPayloadAuthentication) {
-    const user: UserModel = await new FindOneByEmailUser().execute(
+    const user: UserModel = await new FindOneUserByEmail().execute(
       payload.Email,
     );
 
@@ -22,8 +24,14 @@ export class Authentication {
       return ModuloError.passwordIncorrect;
 
     const token = sign(
-      { Nome: user.Nome, Email: user.Email },
-      Environment.Hash,
+      {
+        Email: user.Email,
+        Nome: user.Nome,
+        Enable: user.Enable,
+        CreatedAt: user.CreatedAt,
+        Uuid: user.Uuid,
+      },
+      Environment.SecretKeyHash,
       {
         subject: user.Uuid,
         expiresIn: "1d",
@@ -43,5 +51,24 @@ export class Authentication {
     };
 
     return result;
+  }
+
+  async userDecode(req: Request): Promise<any> {
+    return new Promise((resolve) => {
+      try {
+        const token = req.headers.authorization.replace("Bearer ", "");
+        const user: any = verify(
+          token,
+          Environment.SecretKeyHash,
+          function (err: any, decoded: any) {
+            if (err) throw new UnauthorizedError();
+            return decoded;
+          },
+        );
+        return resolve(user);
+      } catch (error) {
+        throw new UnauthorizedError();
+      }
+    });
   }
 }

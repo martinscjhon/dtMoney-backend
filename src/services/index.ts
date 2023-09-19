@@ -1,4 +1,4 @@
-import { Authentication } from "./authentication";
+import { AuthenticationService } from "./authentication";
 import { UserService } from "./user-service";
 
-export { UserService, Authentication };
+export { UserService, AuthenticationService };

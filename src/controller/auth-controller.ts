@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 
 import { ok } from "../helpers";
-import { Authentication } from "../services";
+import { AuthenticationService } from "../services";
 
 export class AuthController {
-  private service = new Authentication();
+  private service = new AuthenticationService();
 
   async execute(req: Request, res: Response) {
     const {

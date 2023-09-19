@@ -1,5 +1,11 @@
-import { FindOneByEmailUser } from "./command/find-by-email";
+import { FindOneUserByEmail } from "./command/find-by-email";
+import { FindOneUserByUuid } from "./command/find-by-uuid";
 import { InsertUser } from "./command/insert";
-import { VerifyExistUser } from "./command/verify-exist";
+import { VerifyExistUserByEmail } from "./command/verify-exist-by-email";
 
-export { VerifyExistUser, InsertUser, FindOneByEmailUser };
+export {
+  VerifyExistUserByEmail,
+  InsertUser,
+  FindOneUserByEmail,
+  FindOneUserByUuid,
+};

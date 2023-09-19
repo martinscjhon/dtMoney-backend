@@ -14,6 +14,5 @@ export function getStartAplication() {
 
   app.use(userRoute);
   app.use(authRoute);
-
   app.listen(Environment.Port, () => console.log("Inicialize"));
 }

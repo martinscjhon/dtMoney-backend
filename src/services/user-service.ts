@@ -1,9 +1,9 @@
 import { hash } from "bcrypt";
 
 import {
-  VerifyExistUser,
+  VerifyExistUserByEmail,
   InsertUser,
-  FindOneByEmailUser,
+  FindOneUserByEmail,
 } from "../application/user";
 import { ModuloError } from "../common/message";
 import { UserModel } from "../domain/models";
@@ -14,7 +14,7 @@ export class UserService {
       try {
         const { Email, Nome, Password } = payload;
 
-        const find = new FindOneByEmailUser().execute(Email);
+        const find = new FindOneUserByEmail().execute(Email);
 
         if (!find) {
           return ModuloError.existUser;
@@ -37,7 +37,7 @@ export class UserService {
   async verifyExist(email: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       try {
-        resolve(new VerifyExistUser().execute(email));
+        resolve(new VerifyExistUserByEmail().execute(email));
       } catch (error) {
         reject(error);
       }

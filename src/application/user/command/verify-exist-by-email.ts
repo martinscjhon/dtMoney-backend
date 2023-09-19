@@ -2,7 +2,7 @@ import { Repository, getRepository } from "typeorm";
 
 import { Users } from "../../../domain/entities";
 
-export class VerifyExistUser {
+export class VerifyExistUserByEmail {
   private repository: Repository<Users>;
 
   constructor() {

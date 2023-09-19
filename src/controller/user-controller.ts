@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { ModuloError } from "../common/message";
-import { ok, badRequest } from "../helpers";
+import { ok, errorDispatch } from "../helpers";
 import { UserService } from "../services";
 
 export class UserController {
@@ -19,7 +19,7 @@ export class UserController {
       });
       ok(res, insert);
     } catch (error) {
-      badRequest(res, ModuloError.existUser);
+      errorDispatch(res, ModuloError.existUser);
     }
   }
 }
