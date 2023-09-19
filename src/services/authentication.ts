@@ -54,7 +54,7 @@ export class AuthenticationService {
   }
 
   async userDecode(req: Request): Promise<any> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       try {
         const token = req.headers.authorization.replace("Bearer ", "");
         const user: any = verify(
@@ -67,7 +67,7 @@ export class AuthenticationService {
         );
         return resolve(user);
       } catch (error) {
-        throw new UnauthorizedError();
+        reject(new UnauthorizedError())
       }
     });
   }
