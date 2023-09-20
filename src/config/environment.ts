@@ -6,6 +6,7 @@ export class Environment {
   public static StatusCodeBadRequest: number;
   public static StatusCodeNotContent: number;
   public static StatusCodeUnauthorized: number;
+  public static ExpirationToken: string;
 
   public static async register() {
     Environment.Port = Number(process.env.PORT);
@@ -15,5 +16,6 @@ export class Environment {
     Environment.StatusCodeBadRequest = 500;
     Environment.StatusCodeNotContent = 204;
     Environment.StatusCodeUnauthorized = 401;
+    Environment.ExpirationToken = process.env.EXPIRATION_TOKEN;
   }
 }

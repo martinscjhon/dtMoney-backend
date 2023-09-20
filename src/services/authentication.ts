@@ -34,7 +34,7 @@ export class AuthenticationService {
       Environment.SecretKeyHash,
       {
         subject: user.Uuid,
-        expiresIn: "1d",
+        expiresIn: Environment.ExpirationToken,
       },
     );
 
