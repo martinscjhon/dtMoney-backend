@@ -20,7 +20,7 @@ export class UserController {
 
   async info(req: Request, res: Response) {
     try {
-      const userInfo = this.auth.userDecode(req);
+      const userInfo = await this.auth.userDecode(req);
       ok(res, userInfo);
     } catch (error) {
       errorDispatch(res, ModuloError.existUser);
