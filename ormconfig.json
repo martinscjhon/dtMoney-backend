@@ -6,7 +6,7 @@
     "password": "jm201219",
     "database": "dtMoney",
     "synchronize": true,
-    "logging": true,
+    "logging": true,    
     "entities": [
         "./src/domain/entities/*.ts"
     ],

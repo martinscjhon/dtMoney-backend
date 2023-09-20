@@ -6,6 +6,7 @@ export class Base {
   @PrimaryGeneratedColumn("increment")
   Id!: number;
 
+  @Index()
   @Column({ type: "varchar" })
   Uuid: string;
 
