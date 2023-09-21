@@ -15,4 +15,13 @@ transationRoute.post(
   },
 );
 
+transationRoute.get(
+  `${controllerName}/list`,
+  AuthenticationMiddleware,
+  (req: Request, res: Response) => {
+    return service.getAllByUserUuid(req, res);
+  },
+);
+
+
 export { transationRoute };

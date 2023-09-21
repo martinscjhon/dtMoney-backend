@@ -15,4 +15,7 @@ export class Transations extends Base {
 
   @Column({ type: "varchar", length: 100, nullable: false })
   Type: string;
+
+  @Column({ type: "varchar", length: 60, nullable: false })
+  UserUuid: string;
 }

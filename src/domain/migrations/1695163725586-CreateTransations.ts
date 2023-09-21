@@ -45,7 +45,7 @@ export class CreateTransations1695163725586 implements MigrationInterface {
           {
             name: "UserUuid",
             type: "varchar",
-            length: "100",
+            length: "60",
             isNullable: false,
           },
           {

@@ -20,4 +20,14 @@ export class TransationController {
       errorDispatch(res, error);
     }
   }
+
+  async getAllByUserUuid(req: Request, res: Response) {
+    try {      
+      const auth = await this.serviceAuth.userDecode(req);
+      const list = await this.service.getAllByUserUuid(auth.Uuid);
+      ok(res, list);
+    } catch (error) {
+      errorDispatch(res, error);
+    }
+  }
 }
