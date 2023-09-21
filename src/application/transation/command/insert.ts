@@ -26,7 +26,7 @@ export class InsertTransation {
         insertTransation.Description = payloadTransation.Description;
         insertTransation.Type = payloadTransation.Type;
         insertTransation.Value = payloadTransation.Value;
-        insertTransation.UserUuid = payloadTransation.UserUuid;        
+        insertTransation.UserUuid = payloadTransation.UserUuid;
 
         const insertLogs = this.repositoryLog.create();
         insertLogs.Description = payloadLog.Description;

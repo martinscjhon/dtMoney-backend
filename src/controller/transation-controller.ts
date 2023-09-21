@@ -22,7 +22,7 @@ export class TransationController {
   }
 
   async getAllByUserUuid(req: Request, res: Response) {
-    try {      
+    try {
       const auth = await this.serviceAuth.userDecode(req);
       const list = await this.service.getAllByUserUuid(auth.Uuid);
       ok(res, list);

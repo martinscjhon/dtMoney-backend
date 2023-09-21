@@ -23,5 +23,4 @@ transationRoute.get(
   },
 );
 
-
 export { transationRoute };

@@ -8,7 +8,7 @@ export class GetAllByUserUuid {
       try {
         const queryRunner = await getConnection().createQueryRunner();
         await queryRunner.startTransaction();
-        const sql = `SELECT * FROM transations t WHERE t.UserUuid = "${UserUuid}"`
+        const sql = `SELECT * FROM transations t WHERE t.UserUuid = "${UserUuid}"`;
         const transations = queryRunner.query(sql);
         resolve(transations);
       } catch (error) {
