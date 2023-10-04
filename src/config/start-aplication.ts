@@ -7,10 +7,13 @@ import {
   categorieRoute,
 } from "../router";
 import { Environment } from "./environment";
+
 import "../domain";
+import { startCors } from "../middlewares/cors";
 
 export function getStartAplication() {
   const app = express();
+  startCors(app);
   app.use(express.json());
 
   app.get("/health", (request: Request, response: Response) => {
