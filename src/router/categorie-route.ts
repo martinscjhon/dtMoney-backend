@@ -1,13 +1,13 @@
 import { Request, Response, Router } from "express";
 
-import { TransationController } from "../controller";
+import { CategorieController } from "../controller";
 import { AuthenticationMiddleware } from "../middlewares/authentication-middleware";
 
-const transationRoute = Router();
-const controllerName = "/transation";
-const controller = new TransationController();
+const categorieRoute = Router();
+const controllerName = "/categorie";
+const controller = new CategorieController();
 
-transationRoute.post(
+categorieRoute.post(
   `${controllerName}/create`,
   AuthenticationMiddleware,
   (req: Request, res: Response) => {
@@ -15,12 +15,12 @@ transationRoute.post(
   },
 );
 
-transationRoute.get(
-  `${controllerName}/list`,
+categorieRoute.get(
+  `${controllerName}/all`,
   AuthenticationMiddleware,
   (req: Request, res: Response) => {
-    return controller.getAllByUserUuid(req, res);
+    return controller.getAll(req, res);
   },
 );
 
-export { transationRoute };
+export { categorieRoute };

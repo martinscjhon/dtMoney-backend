@@ -4,10 +4,10 @@ import { AuthController } from "../controller";
 
 const authRoute = Router();
 const controllerName = "/app";
-const service = new AuthController();
+const controller = new AuthController();
 
 authRoute.post(`${controllerName}/login`, (req: Request, res: Response) => {
-  return service.execute(req, res);
+  return controller.execute(req, res);
 });
 
 export { authRoute };

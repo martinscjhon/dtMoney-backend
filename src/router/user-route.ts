@@ -5,17 +5,17 @@ import { AuthenticationMiddleware } from "../middlewares/authentication-middlewa
 
 const userRoute = Router();
 const controllerName = "/user";
-const service = new UserController();
+const controller = new UserController();
 
 userRoute.post(`${controllerName}/create`, (req: Request, res: Response) => {
-  return service.create(req, res);
+  return controller.create(req, res);
 });
 
 userRoute.get(
   `${controllerName}/info`,
   AuthenticationMiddleware,
   (req: Request, res: Response) => {
-    return service.info(req, res);
+    return controller.info(req, res);
   },
 );
 
