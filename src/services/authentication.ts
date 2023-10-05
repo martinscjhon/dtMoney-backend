@@ -18,10 +18,10 @@ export class AuthenticationService {
       payload.Email,
     );
 
-    if (!user?.Email) return ModuloError.noExistUser;
+    if (!user?.Email) throw new Error(ModuloError.noExistUser);
 
     if (!(await compare(payload.Password, user.Password)))
-      return ModuloError.passwordIncorrect;
+      throw new Error(ModuloError.passwordIncorrect);
 
     const token = sign(
       {
@@ -40,14 +40,12 @@ export class AuthenticationService {
 
     const result: IAuthentication = {
       token,
-      body: {
-        CreatedAt: user.CreatedAt,
-        Email: user.Email,
-        Enable: user.Enable,
-        Nome: user.Name,
-        Uuid: user.Uuid,
-        Id: user.Id,
-      },
+      CreatedAt: user.CreatedAt,
+      Email: user.Email,
+      Enable: user.Enable,
+      Nome: user.Name,
+      Uuid: user.Uuid,
+      Id: user.Id,
     };
 
     return result;
