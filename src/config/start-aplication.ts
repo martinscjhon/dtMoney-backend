@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 
+import { startCors } from "../middlewares/cors";
 import {
   userRoute,
   authRoute,
@@ -9,7 +10,6 @@ import {
 import { Environment } from "./environment";
 
 import "../domain";
-import { startCors } from "../middlewares/cors";
 
 export function getStartAplication() {
   const app = express();
