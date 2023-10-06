@@ -27,7 +27,7 @@ export class CreateTransations1695163725586 implements MigrationInterface {
           },
           {
             name: "Value",
-            type: "decimal",
+            type: "float",
             isNullable: false,
           },
           {

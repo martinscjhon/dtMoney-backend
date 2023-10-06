@@ -1,5 +1,14 @@
-import { GetAllByUserUuid, InsertTransation } from "../application/transation";
-import { LogsModel, TransationModel } from "../domain/models";
+import {
+  GetAllByUserUuid,
+  GetResumeValuesByUuid,
+  InsertTransation,
+} from "../application/transation";
+import {
+  LogsModel,
+  ResumeValuesModel,
+  TransationModel,
+} from "../domain/models";
+import { FormatCurrency } from "../helpers/format-values";
 
 export class TransationService {
   async create(payload: TransationModel, auth: any): Promise<any> {
@@ -27,7 +36,25 @@ export class TransationService {
   async getAllByUserUuid(UserUuid: string): Promise<any[]> {
     return new Promise(async (resolve, reject) => {
       try {
-        resolve(await new GetAllByUserUuid().execute(UserUuid));
+        const listTransations = await new GetAllByUserUuid().execute(UserUuid);
+
+        resolve(listTransations);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  async getResumeValues(UserUuid: string): Promise<ResumeValuesModel> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const resume = await new GetResumeValuesByUuid().execute(UserUuid);
+
+        resume.Entradas = new FormatCurrency().execute(Number(resume.Entradas));
+        resume.Saidas = new FormatCurrency().execute(Number(resume.Saidas));
+        resume.Total = new FormatCurrency().execute(Number(resume.Total));
+
+        resolve(resume);
       } catch (error) {
         reject(error);
       }

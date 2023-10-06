@@ -23,4 +23,12 @@ transationRoute.get(
   },
 );
 
+transationRoute.get(
+  `${controllerName}/resume`,
+  AuthenticationMiddleware,
+  (req: Request, res: Response) => {
+    return controller.getResumeValues(req, res);
+  },
+);
+
 export { transationRoute };

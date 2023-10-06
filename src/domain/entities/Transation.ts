@@ -7,7 +7,7 @@ export class Transations extends Base {
   @Column({ type: "varchar", length: 100, nullable: false })
   Description: string;
 
-  @Column({ type: "int", nullable: false })
+  @Column({ type: "float", nullable: false })
   Value: number;
 
   @Column({ type: "varchar", length: 100, nullable: false })
